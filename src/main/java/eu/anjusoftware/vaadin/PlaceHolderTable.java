@@ -1,6 +1,6 @@
 package eu.anjusoftware.vaadin;
 
-import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.gridpro.GridPro;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -11,19 +11,18 @@ import eu.anjusoftware.services.PlaceHolderService;
 public class PlaceHolderTable extends VerticalLayout {
 	
 	private static final long serialVersionUID = 1L;
-	public final Grid<PlaceHolder> grid;
+	public final GridPro<PlaceHolder> grid;
 	public PlaceHolderService placeHolderService;
 	
 	public PlaceHolderTable(PlaceHolderService placeHolderService) {
 		this.placeHolderService = placeHolderService;
-		this.grid = new Grid<>(PlaceHolder.class);
-		this.grid.setColumns("id", "userId", "title", "completed");		
+		this.grid = new GridPro<>();
+		this.grid.addColumn(PlaceHolder::getId).setHeader("ID");
+		this.grid.addColumn(PlaceHolder::getUserId).setHeader("User ID");
+		this.grid.addEditColumn(PlaceHolder::getTitle).text((item, newValue) -> {}).setHeader("Title (editable)");
+		this.grid.addColumn(PlaceHolder::getCompleted).setHeader("Completed");
 		add(grid);
-		listPlaceHolders();
-	}
-	
-	private void listPlaceHolders() {
-		grid.setItems(placeHolderService.findAll());
+		this.grid.setItems(placeHolderService.findAll());
 	}
 
 }
