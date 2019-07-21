@@ -17,7 +17,7 @@ public class PlaceHolderTable extends VerticalLayout {
 	public PlaceHolderTable(PlaceHolderService placeHolderService) {
 		this.placeHolderService = placeHolderService;
 		this.grid = new Grid<>(PlaceHolder.class);
-		this.grid.setColumns("id", "userId", "title", "completed");
+		this.grid.setColumns("id", "userId", "title", "completed");		
 		add(grid);
 		listPlaceHolders();
 	}
