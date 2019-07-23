@@ -19,7 +19,6 @@ public class PlaceHolderTable extends VerticalLayout {
 	public PlaceHolderTable(PlaceHolderService placeHolderService) {
 		this.placeHolderService = placeHolderService;
 		this.grid = new GridPro<>();
-		
 		this.grid.addThemeNames("row-stripes");
 		this.grid.setId("grid");
 		this.grid.addColumn(PlaceHolder::getId).setHeader("ID");
